@@ -23,7 +23,7 @@ export class AccountPage {
   }
 
   ngAfterViewInit() {
-    this.profilePhoto = '../../assets/avatar.png';
+    this.profilePhoto = 'assets/avatar.png';
     if (this.userData.getProfilephoto()) {
       this.profilePhoto = this.userData.getProfilephoto();
     }
