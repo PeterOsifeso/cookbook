@@ -42,16 +42,15 @@ export class LoginPage {
             this.userData.setUsername(user.username);
             this.navCtrl.setRoot(AllRecipesPage);
             loader.dismiss();
-          }, err => {
-            console.log('Could not get userData ', err);
-            let toast = this.toastCtrl.create({
-              message: err.message,
-              duration: 3000
-            });
-            toast.present();
           });
-        }
-      );
+        }, err => {
+          console.log('Could not get userData ', err);
+          let toast = this.toastCtrl.create({
+            message: err.message,
+            duration: 3000
+          });
+          toast.present();
+      });
     } else {
       loader.dismiss();
       let toast = this.toastCtrl.create({
