@@ -1,0 +1,16 @@
+page-view-recipe {
+    .active {
+        color: red;
+    }
+    .fav-button {
+        width: auto;
+        height: 54px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        border-radius: 50%;
+    }
+    .fav-button-icon {
+        font-size: 2em;
+    }
+}

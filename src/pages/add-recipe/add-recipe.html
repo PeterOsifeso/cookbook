@@ -1,0 +1,103 @@
+<!--
+  Generated template for the AddRecipePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        <ion-title>Add New Recipe</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list [formGroup]="recipeForm">
+        <div *ngIf="recipeImage" text-center style="padding-top: 5px;">
+            <img text-center [src]="recipeImage">
+        </div>
+
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button primary icon-left (click)="addRecipeImage()">
+                  <ion-icon name="image"></ion-icon>Upload Recipe Image
+                  <div style="color:red">&nbsp; *</div>
+                </button>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-item>
+            <ion-label stacked>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Category</ion-label>
+            <ion-select formControlName="category">
+                <ion-option value="breakfast">Breakfast</ion-option>
+                <ion-option value="lunch">Lunch</ion-option>
+                <ion-option value="dessert">Dessert</ion-option>
+                <ion-option value="other">Other</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Avg Preparation Time (minutes)</ion-label>
+            <ion-input type="text" formControlName="time"></ion-input>
+        </ion-item>
+
+        <ion-item formArrayName="ingredients" *ngFor="let ingredient of recipeForm.get('ingredients').controls;
+        let i = index">
+
+            <ion-label stacked>
+                Ingredient {{i+1}}
+            </ion-label>
+            <ion-input type="text" [formControlName]="i"></ion-input>
+        </ion-item>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button clear icon-left (click)="addIngredient()">
+                  <ion-icon name="add"></ion-icon>Add Ingredient
+                </button>
+            </ion-col>
+            <ion-col col-6>
+                <button *ngIf="recipeForm.get('ingredients').controls.length>1" ion-button clear icon-left (click)="popIngredient(-1)">
+                  <ion-icon name="minus"></ion-icon>Remove Ingredient
+                </button>
+            </ion-col>
+        </ion-row>
+
+        <ion-item formArrayName="preparation" *ngFor="let preparation of recipeForm.get('preparation').controls;
+        let i = index">
+
+            <ion-label stacked>
+                Preparation Step {{i+1}}
+            </ion-label>
+            <ion-input type="text" [formControlName]="i"></ion-input>
+        </ion-item>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button clear icon-left (click)="addPreparation()">
+                  <ion-icon name="add"></ion-icon>Add Step
+                </button>
+            </ion-col>
+            <ion-col col-6>
+                <button *ngIf="recipeForm.get('preparation').controls.length>1" ion-button clear icon-left (click)="popPreparation(-1)">
+                  <ion-icon name="minus"></ion-icon>Remove Step
+                </button>
+            </ion-col>
+        </ion-row>
+
+        <ion-row text-center>
+            <ion-col col-4 offset-4>
+                <button ion-button primary text-center [disabled]="recipeForm.invalid || !recipeImage" (click)="addRecipe()">Submit Recipe</button>
+            </ion-col>
+        </ion-row>
+    </ion-list>
+</ion-content>

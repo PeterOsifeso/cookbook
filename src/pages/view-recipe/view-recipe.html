@@ -1,0 +1,45 @@
+<!--
+  Generated template for the ViewRecipePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{recipe.name}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-fab right bottom>
+        <button ion-fab color="light"><ion-icon name="share"></ion-icon></button>
+        <ion-fab-list side="top">
+            <button ion-fab (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
+            <button ion-fab (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
+            <button ion-fab (click)="shareViaInstagram()"><ion-icon name="logo-instagram"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+
+    <h1 class="recipe-name" text-center>{{recipe.name}}</h1>
+    <hr style="margin-bottom: 0">
+    <div style="position: relative" text-center>
+        <img [src]="recipe.image" text-center>
+        <button ion-button class="fav-button" (click)="addToFavorite()">
+              <ion-icon name="heart" class="fav-button-icon" [class.active]="isFavorite"></ion-icon>
+            </button>
+    </div>
+
+    <ion-card-content style="padding-bottom: 50px;">
+        <p text-center><b>Author- {{recipe.author}}</b></p>
+        <b>Ingredients</b>
+        <hr>
+        <p *ngFor="let ingredient of recipe.ingredients; index as i"><span>{{i+1}}. &nbsp;</span>{{ingredient}}</p>
+        <b>Method</b>
+        <hr>
+        <p *ngFor="let step of recipe.preparation; index as i"><span>{{i+1}}. &nbsp;</span>{{step}}</p>
+    </ion-card-content>
+
+</ion-content>

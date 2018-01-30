@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar no-border-bottom>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-searchbar color="primary" [(ngModel)]="queryText" (ionInput)="filterRecipes()" placeholder="Search Favorites">
+        </ion-searchbar>
+    </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+    <ion-card *ngIf="!filteredRecipes || filteredRecipes.length === 0">
+        <ion-card-content class="grey">
+            No Recipe available
+        </ion-card-content>
+    </ion-card>
+    <div class="list-div" *ngFor="let recipe of filteredRecipes">
+        <div text-center>
+            <img text-center [src]="recipe.image" (click)="viewRecipe(recipe)">
+        </div>
+        <h1 class="recipe-name" text-center>{{recipe.name}}</h1>
+        <ion-card-content>
+
+            <b class="grey">Author - {{recipe.author}}</b>
+        </ion-card-content>
+
+        <ion-row>
+            <button ion-button icon-left clear text-center (click)="viewRecipe(recipe)">
+                <div>View Recipe</div>
+            </button>
+            <button (click)="removeRecipe(recipe)" ion-button icon-left clear text-center>
+                    <div>Delete Recipe</div>
+                </button>
+        </ion-row>
+    </div>
+</ion-content>
